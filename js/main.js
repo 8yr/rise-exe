@@ -16,7 +16,7 @@
     GifSkinManager.list = [
         {
             name:'zimek', 
-            skinUrl:'https://skins.vanis.io/s/QyYQz0',
+            skinUrl:'https://3rb.io/res/skins/free/2.png',
             isLockedToColor:true,
             isLockedToName:true,
             gif:{
