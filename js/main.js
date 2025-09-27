@@ -288,14 +288,14 @@
             for (var t = "", s = "X0123456789", i = s.length, a = 0; a < e; a++) t += s.charAt(Math.floor(Math.random() * i));
             return t
         }, window.$ = (e, t = document) => t.querySelector(e), window.extraServers = [{
-            name: "Local:8080",
+            name: "Local:2052",
             domain: "localhost",
             port: 8080,
             mode: "Instant",
             players: "0",
             slots: "00",
             region: "EU",
-            url: "ws://localhost:8080"
+            url: "ws://localhost:2052"
         }],
         function(e) {
             var t, s = (t = !0, function(e, s) {
