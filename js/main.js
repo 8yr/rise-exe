@@ -31,7 +31,7 @@
     CellOverlayManager.list = [
         {
             name:'zimek',
-            skinUrl:'https://skins.vanis.io/s/Owljce',
+            skinUrl:'https://skins.3rb.io/s/Owljce',
             isLockedToColor:true,
             isLockedToName:true,
             url:'https://i.postimg.cc/x82447k4/hat5.png',
@@ -506,8 +506,8 @@
                         sendJoinData(e, t) {
                             let i = s.fromSize(2 + e.length + 7);
                             i.writeUInt8(5), i.writeUInt8(C.clientVersion), i.ensureCapacity(e.length), e.forEach(e => i.writeUInt8(e)), o(i, !!t);
-                            let a = localStorage.vanisToken;
-                            a && /^wss?:\/\/[a-zA-Z0-9_-]+\.vanis\.io/i.test(C.ws.url) && i.writeStringNT(a), this.send(i, t, !!t)
+                            let a = localStorage.3rbToken;
+                            a && /^wss?:\/\/[a-zA-Z0-9_-]+\.3rb\.io/i.test(C.ws.url) && i.writeStringNT(a), this.send(i, t, !!t)
                         }
                         sendRecaptchaToken(e, t) {
                             e = unescape(encodeURIComponent(e));
@@ -962,7 +962,7 @@
                                 let {
                                     selectedServer: _
                                 } = y;
-                                _ && /Welcome to Vanis\.io,.+\!/.test(b.text) && (b.text = `Connected to ${_.region} ${_.name}`), this.events.$emit("chat-message", b.text);
+                                _ && /Welcome to 3rb\.io,.+\!/.test(b.text) && (b.text = `Connected to ${_.region} ${_.name}`), this.events.$emit("chat-message", b.text);
                                 return
                             }
                             let S = this.playerManager.getPlayer(b.pid);
@@ -1319,7 +1319,7 @@
                 },
                 writeUserData(e, t) {
                     let s = t && i.mbUseName ? i.mbName || "Dual" : document.getElementById("nickname").value,
-                        a = t ? i.mbSkin || "vanis1" : document.getElementById("skinurl").value,
+                        a = t ? i.mbSkin || "3rb1" : document.getElementById("skinurl").value,
                         n = document.getElementById("teamtag").value;
                     e.writeEscapedStringNT(s), e.writeEscapedStringNT(a), e.writeEscapedStringNT(n)
                 }
@@ -1639,14 +1639,14 @@
                             inputValue: e.name,
                             showCancelButton: !0,
                             confirmButtonText: "Download",
-                            html: "Only Vanis.io can read replay files.<br>It consists of player positions and other game related data."
+                            html: "Only 3rb.io can read replay files.<br>It consists of player positions and other game related data."
                         }).then(t => {
                             var s = t.value;
                             if (s) {
                                 var a = new Blob([e.data], {
                                     type: "text/plain;charset=utf-8"
                                 });
-                                i.saveAs(a, s + ".vanis")
+                                i.saveAs(a, s + ".3rb")
                             }
                         })
                     },
@@ -2456,12 +2456,12 @@
                     return !(t.lastRefresh + 1e3 * t.waitInterval > s) && (t.lastRefresh = s, this.pushAd(t.elementId), !0)
                 }
             };
-            t.addAd("menu-box", "vanis-io_300x250", 30), t.addAd("menu-banner", "vanis-io_728x90", 120), t.addAd("death-box", "vanis-io_300x250_2", 30), e.exports = {
+            t.addAd("menu-box", "3rb-io_300x250", 30), t.addAd("menu-banner", "3rb-io_728x90", 120), t.addAd("death-box", "3rb-io_300x250_2", 30), e.exports = {
                 loadAdinplay(e) {
                     var t = window.aiptag = t || {};
                     t.cmd = t.cmd || [], t.cmd.display = t.cmd.display || [], t.gdprShowConsentTool = !0;
                     var s = document.createElement("script");
-                    s.onload = e, s.src = "//api.adinplay.com/libs/aiptag/pub/VAN/vanis.io/tag.min.js", document.head.appendChild(s)
+                    s.onload = e, s.src = "//api.adinplay.com/libs/aiptag/pub/VAN/3rb.io/tag.min.js", document.head.appendChild(s)
                 },
                 refreshAd: e => t.refreshAd(e)
             }
@@ -2935,7 +2935,7 @@
                 }) {
                     !this.players.has(e) && (this.players.set(e, new a(e, r)), r && this.botCount++);
                     let l = this.players.get(e);
-                    s && (i = `https://skins.vanis.io/s/${s}`);
+                    s && (i = `https://skins.3rb.io/s/${s}`);
                     let c = l.setName(t, n),
                         h = l.setSkin(i),
                         d = l.setTagId(o);
@@ -4146,13 +4146,13 @@
         }, function() {}, function(e, t, s) {
             e.exports = new class e {
                 constructor(e, t) {
-                    this.url = e, this.vanisToken = t
+                    this.url = e, this.3rbToken = t
                 }
                 setToken(e) {
-                    this.vanisToken = e, localStorage.vanisToken = e
+                    this.3rbToken = e, localStorage.3rbToken = e
                 }
                 clearToken() {
-                    this.vanisToken = null, delete localStorage.vanisToken
+                    this.3rbToken = null, delete localStorage.3rbToken
                 }
                 async call(e, t) {
                     let s = {
@@ -4164,7 +4164,7 @@
                             Accept: "application/json, text/plain"
                         }
                     };
-                    this.vanisToken && (s.headers.Authorization = `Vanis ${this.vanisToken}`);
+                    this.3rbToken && (s.headers.Authorization = `3rb ${this.3rbToken}`);
                     try {
                         return await fetch(this.url + t, s)
                     } catch (i) {
@@ -4179,7 +4179,7 @@
                 get(e) {
                     return this.call("GET", e)
                 }
-            }("https://vanis.io/api", localStorage.vanisToken || null)
+            }("https://3rb.io/api", localStorage.3rbToken || null)
         }, function(e) {
             e.exports = {
                 getXp: function(e) {
@@ -4389,7 +4389,7 @@
                         staticClass: "bar"
                     }, [t("div", {
                         attrs: {
-                            id: "vanis-io_728x90"
+                            id: "3rb-io_728x90"
                         }
                     })]), this._v(" "), t("servers", {
                         staticClass: "fade-box two"
@@ -4537,13 +4537,13 @@
                         },
                         checkBadSkinUrl() {
                             var e = document.getElementById("skinurl").value;
-                            e && /^https:\/\/[a-z0-9_-]+.vanis\.io\/[./a-z0-9_-]+$/i.test(e)
+                            e && /^https:\/\/[a-z0-9_-]+.3rb\.io\/[./a-z0-9_-]+$/i.test(e)
                         },
                         reloadServers() {
                             h.app.showMenu && Date.now() > this.lastServerListReloadTime + 6e4 && this.loadServers()
                         },
                         loadServers(e) {
-                            e = e || p, this.lastServerListReloadTime = Date.now(), c.get("https://vanis.io/gameservers.json").then(t => {
+                            e = e || p, this.lastServerListReloadTime = Date.now(), c.get("https://3rb.io/gameservers.json").then(t => {
                                 var s = t.data.sort(g);
                                 window.extraServers.forEach(e => {
                                     s.unshift(e)
@@ -4674,7 +4674,7 @@
                             id: "skinurl",
                             type: "text",
                             spellcheck: "false",
-                            placeholder: "https://skins.vanis.io/s/"
+                            placeholder: "https://skins.3rb.io/s/"
                         },
                         domProps: {
                             value: e.skinUrl
@@ -6878,7 +6878,7 @@
                         },
                         attrs: {
                             type: "file",
-                            accept: ".vanis",
+                            accept: ".3rb",
                             multiple: ""
                         },
                         on: {
@@ -6966,7 +6966,7 @@
                     })])])]) : e._e(), e._v(" "), s("span", {
                         staticClass: "replay-list-bulk"
                     }, [s("input", {
-                        staticClass: "vanis-button",
+                        staticClass: "3rb-button",
                         attrs: {
                             type: "button",
                             disabled: !e.keysLoaded,
@@ -6978,7 +6978,7 @@
                             }
                         }
                     }), e._v(" "), s("input", {
-                        staticClass: "vanis-button",
+                        staticClass: "3rb-button",
                         attrs: {
                             type: "button",
                             disabled: !e.keysLoaded || e.keysEmpty,
@@ -6990,7 +6990,7 @@
                             }
                         }
                     }), e._v(" "), s("input", {
-                        staticClass: "vanis-button",
+                        staticClass: "3rb-button",
                         attrs: {
                             type: "button",
                             disabled: !e.keysLoaded || e.keysEmpty,
@@ -7077,7 +7077,7 @@
                                         i = t.length,
                                         a = t.map(async e => {
                                             var t, a;
-                                            await eh.setItem(e.name.replace(/\.vanis$/, ""), await (t = e, new Promise((e, s) => {
+                                            await eh.setItem(e.name.replace(/\.3rb$/, ""), await (t = e, new Promise((e, s) => {
                                                 var i = new FileReader;
                                                 i.onload = t => e(t.target.result), i.onerror = s, i.readAsText(t)
                                             }))), this.setBulkOp(!0, "Importing replays (" + ++s + " / " + i + ")")
@@ -7102,7 +7102,7 @@
                                 for (var a = 0, n = 0; a < e; a += 200, n++) {
                                     for (var o = new ea, r = a; r < a + 200 && r < e; r++) {
                                         var l = this.replayKeys[r];
-                                        o.file(l + ".vanis", await eh.getItem(l))
+                                        o.file(l + ".3rb", await eh.getItem(l))
                                     }
                                     var c = await o.generateAsync({
                                             type: "blob"
@@ -7147,7 +7147,7 @@
                                         name: r,
                                         data: await eh.getItem(r)
                                     };
-                                l.data.startsWith("REPLAY") ? l.image = l.data.split("|")[2] : l.image = "https://vanis.io/img/replay-placeholder.png", s.push(l)
+                                l.data.startsWith("REPLAY") ? l.image = l.data.split("|")[2] : l.image = "https://3rb.io/img/replay-placeholder.png", s.push(l)
                             }
                             i || (this.pageData.splice(0, this.pageData.length, ...s), this.pageLoaded = !0)
                         }
@@ -7274,7 +7274,7 @@
                         gameState: ew.state,
                         nickname: "string" == typeof localStorage.nickname ? localStorage.nickname : "",
                         teamtag: localStorage.teamtag || "",
-                        skinUrl: "string" == typeof localStorage.skinUrl ? localStorage.skinUrl : "https://skins.vanis.io/s/vanis1"
+                        skinUrl: "string" == typeof localStorage.skinUrl ? localStorage.skinUrl : "https://skins.3rb.io/s/3rb1"
                     }),
                     created: function() {
                         ew.events.$on("skin-click", e => {
@@ -7458,12 +7458,12 @@
                     methods: {
                         listenForToken() {
                             window.addEventListener("message", e => {
-                                var t = e.data.vanis_token;
+                                var t = e.data.3rb_token;
                                 t && (this.onLoggedIn(t), e.source.postMessage("loggedIn", e.origin))
                             })
                         },
                         reloadUserData() {
-                            Date.now() - this.accountTime <= 6e4 || (this.accountTime = Date.now(), ex.vanisToken && this.loadUserData())
+                            Date.now() - this.accountTime <= 6e4 || (this.accountTime = Date.now(), ex.3rbToken && this.loadUserData())
                         },
                         async loadUserData() {
                             this.loading = !0;
@@ -7588,11 +7588,11 @@
                                 return !1
                             }
                             if (!Array.isArray(t)) return !1;
-                            for (var i = t.length; i < 2; i++) t.push("https://skins.vanis.io/s/vanis1");
+                            for (var i = t.length; i < 2; i++) t.push("https://skins.3rb.io/s/3rb1");
                             return t
                         },
                         getDefaultSkins() {
-                            for (var e = [], t = 0; t < 8; t++) e.push("https://skins.vanis.io/s/vanis1");
+                            for (var e = [], t = 0; t < 8; t++) e.push("https://skins.3rb.io/s/3rb1");
                             return e
                         },
                         onSkinUrlChanged(e) {
@@ -7604,14 +7604,14 @@
                             eD.events.$emit("skin-click", t)
                         },
                         removeSkin(e) {
-                            this.skins.splice(e, 1), this.skins.length < 2 && this.skins.push("https://skins.vanis.io/s/vanis1"), this.saveSkins();
+                            this.skins.splice(e, 1), this.skins.length < 2 && this.skins.push("https://skins.3rb.io/s/3rb1"), this.saveSkins();
                             var t = Math.max(0, this.selectedSkinIndex - 1);
                             this.selectSkin(t)
                         },
                         addSkin(e) {
                             if (!this.skins.includes(e)) {
                                 var t = this.skins.length;
-                                this.skins.push(e || "https://skins.vanis.io/s/vanis1"), e || this.selectSkin(t), this.saveSkins()
+                                this.skins.push(e || "https://skins.3rb.io/s/3rb1"), e || this.selectSkin(t), this.saveSkins()
                             }
                         },
                         saveSkins() {
@@ -8188,7 +8188,7 @@
                         }
                     }, [s("div", {
                         attrs: {
-                            id: "vanis-io_300x250_2"
+                            id: "3rb-io_300x250_2"
                         }
                     })])]), e._v(" "), e.stats ? s("div", {
                         staticClass: "fade-box",
@@ -8664,14 +8664,14 @@ Multibox Profile
 <div data-v-3ddebeb3="" class="p-switch pretty" p-checkbox="" style="float:left;margin-top:4px"><input type="checkbox" id="mbUseName" onchange="window.setMultiData(3)" ${window.settings.mbUseName?"checked":""}> <div class="state"> <label></label></div> <!----> <!----> <!----></div>
     <input oninput="window.setMultiData(2)" id="mbName" value="${window.settings.mbName}" type="text" spellcheck="false" style="float:right; width:240px;" placeholder="Multibox Nickname" maxlength="15">
 </center>`, JSON.parse(localStorage.skins).forEach(e => {
-                $("#multiSkins").innerHTML += `<img onclick="window.setMultiData(1, '${e}')" src="${""==e?"https://skins.vanis.io/s/7FQOch":e}" width="125" style="cursor:pointer;padding:5px;border-radius:50%;">`
+                $("#multiSkins").innerHTML += `<img onclick="window.setMultiData(1, '${e}')" src="${""==e?"https://skins.3rb.io/s/7FQOch":e}" width="125" style="cursor:pointer;padding:5px;border-radius:50%;">`
             })
         })
     })
 
     let vv = document.createElement('a')
-    vv.innerText = 'Vanilla Vanis.io'
-    vv.href = 'https://vanis.io/?vanilla'
+    vv.innerText = 'Vanilla 3rb.io'
+    vv.href = 'https://3rb.io/?vanilla'
     vv.style.position = 'fixed'
     vv.style.bottom = '0'
     vv.style.left = '0'
