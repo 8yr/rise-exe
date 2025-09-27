@@ -7179,7 +7179,7 @@
                         staticClass: "info"
                     }, [e._v("\n        Season XP counts for this season only."), s("br"), e._v("\n            Top few players earn colored names."), s("br"), e._v("\n        Check our "), s("a", {
                         attrs: {
-                            href: "https://vanis.io/discord"
+                            href: "https://3rb.io/discord"
                         }
                     }, [e._v("Discord")]), e._v(" for more information."), s("br"), e._v("\n        Season ends in "), s("b", [e._v(e._s(e.seasonEndTime))])]), e._v(" "), e._l(e.playerList, function(t, i) {
                         return s("div", {
